@@ -13,7 +13,7 @@ public class Player {
             x += 11.1/3.0;            //Found experimentally by using the function below
         }
     }
-    public void DisplayPlayer(Arrow arrow){
+    public void DisplayPlayerAndArrow(Arrow arrow){
         if (StdDraw.isKeyPressed(KeyEvent.VK_LEFT)) {
             moveLeft();
         }

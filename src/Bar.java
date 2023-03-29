@@ -20,7 +20,7 @@ public class Bar {
     public long getRemainingTime() {
         return remainingTime;
     }
-    public void setRemainingTime(long passedTime) {
-        this.remainingTime = Environment.TOTAL_GAME_DURATION - passedTime;
+    public void setRemainingTime(long currentTime) {
+        this.remainingTime = Environment.TOTAL_GAME_DURATION - (currentTime - startTime);
     }
 }

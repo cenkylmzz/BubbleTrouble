@@ -1,7 +1,7 @@
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static java.lang.System.currentTimeMillis;
-
 public class Environment {
     static final int backgroundWidth = 640;    // 640 is the width of the background
     static final int backgroundHeight = 480;   // 480 is the height of the background
@@ -19,7 +19,6 @@ public class Environment {
     static final float scaleY2 = backgroundHeight + barHeight;    // 66 is the height of the bar , 480 is the height of the background
     static final long TOTAL_GAME_DURATION = 40000;
     static final int PAUSE_DURATION = 15;
-
     Environment() {
         initialize();
         playGame();
@@ -27,28 +26,40 @@ public class Environment {
 
     public void initialize() {
         StdDraw.enableDoubleBuffering();
-        StdDraw.setCanvasSize(Environment.canvasWidth, Environment.canvasHeight);
-        StdDraw.setXscale(Environment.scaleX1, Environment.scaleX2);
-        StdDraw.setYscale(Environment.scaleY1, Environment.scaleY2);
+        StdDraw.setCanvasSize(canvasWidth, canvasHeight);
+        StdDraw.setXscale(scaleX1, scaleX2);
+        StdDraw.setYscale(scaleY1, scaleY2);
     }
 
     public void playGame() {
+        boolean win = false;
         Player player = new Player();
         Arrow arrow = new Arrow(false, player.getX());
         Bar bar = new Bar(currentTimeMillis());
-        bar.setRemainingTime(currentTimeMillis() - bar.getStartTime());
         while (bar.getRemainingTime() > 0) {
             StdDraw.clear();
             DisplayBackground();
-            player.DisplayPlayer(arrow);
+            player.DisplayPlayerAndArrow(arrow);
             bar.DisplayTimeBar();
             StdDraw.show();
-            bar.setRemainingTime(currentTimeMillis() - bar.getStartTime());
             StdDraw.pause(PAUSE_DURATION);
-
+            bar.setRemainingTime(currentTimeMillis());
         }
         if (bar.getRemainingTime() <= 0) {
-            //TODO Game Over
+            StdDraw.clear();
+            DisplayBackground();
+            StdDraw.picture(player.getX(), player.getY() , "images/player_back.png"
+                    , Environment.playerBackWidth, Environment.playerBackHeight);
+            DisplayGameScreen(win);
+            StdDraw.show();
+            while (!StdDraw.isKeyPressed(KeyEvent.VK_Y) || !StdDraw.isKeyPressed(KeyEvent.VK_N)) {
+                if (StdDraw.isKeyPressed(KeyEvent.VK_Y)) {
+                    playGame();
+                }
+                if (StdDraw.isKeyPressed(KeyEvent.VK_N)) {
+                    System.exit(0);
+                }
+            }
         }
     }
 
@@ -57,5 +68,22 @@ public class Environment {
                 backgroundWidth, backgroundHeight);
         StdDraw.picture(backgroundWidth / 2.0, barHeight / 2.0, "images/bar.png",
                 barWidth, barHeight);
+    }
+    public void DisplayGameScreen(boolean win){
+        Font gameFont = new Font("Helvetica", Font.BOLD, 30);
+        Font replayFont = new Font("Helvetica", Font.ITALIC, 15);
+        StdDraw.picture(scaleX2 / 2.0, backgroundHeight/2.18 + barHeight, "images/game_screen.png",
+                scaleX2/3.8, backgroundHeight/4.0);
+        StdDraw.setPenColor(Color.BLACK);
+        StdDraw.setFont(gameFont);
+        if (win){
+            StdDraw.text(scaleX2 / 2.0, backgroundHeight/2.0 + barHeight, "You Won!");
+        }
+        else {
+            StdDraw.text(scaleX2 / 2.0, backgroundHeight/2.0 + barHeight, "Game Over!");
+        }
+        StdDraw.setFont(replayFont);
+        StdDraw.text(scaleX2 / 2.0, backgroundHeight/2.3 + barHeight, "To Replay, Click \"Y\"");
+        StdDraw.text(scaleX2 / 2.0, backgroundHeight/2.6 + barHeight, "To Quit, Click \"N\"");
     }
 }
