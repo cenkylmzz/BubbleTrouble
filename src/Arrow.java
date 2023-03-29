@@ -1,21 +1,21 @@
 public class Arrow {
     private boolean isFired ;
     private double x ;
-    private double y ;
+
+    private double size;
     static final int PERIOD_OF_ARROW = 1500;
-    public Arrow(boolean isFired, double x, double y) {
+    public Arrow(boolean isFired, double x) {
         this.isFired = isFired;
         this.x = x;
-        this.y = y;
+        this.size = Environment.playerBackHeight/2.0;
     }
-    public void moveArrow() {
-        while (isFired) {
-            final long startTime = System.currentTimeMillis();
-            while (System.currentTimeMillis() - startTime < PERIOD_OF_ARROW) {
-                y += 1;
-                if (y > Environment.backgroundHeight) {
-                    isFired = false;
-                }
+    public void DisplayMovingArrow(){
+        if (isFired){
+            StdDraw.picture(x, Environment.barHeight+size/2, "images/arrow.png"
+                    , Environment.arrowWidth, size);
+            size += 3;
+            if (size > Environment.backgroundHeight){
+                isFired = false;
             }
         }
     }
@@ -28,7 +28,13 @@ public class Arrow {
     public double getX() {
         return x;
     }
-    public double getY() {
-        return y;
+    public void setX(double x) {
+        this.x = x;
+    }
+    public double getSize() {
+        return size;
+    }
+    public void setSize(double size) {
+        this.size = size;
     }
 }
