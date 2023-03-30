@@ -5,7 +5,7 @@ public class Bar {
         this.startTime = startTime;
         remainingTime = Environment.TOTAL_GAME_DURATION;
     }
-    public void DisplayTimeBar(){
+    public void displayTimeBar(){
         int r = 255;
         int g = (int) (255 * ((double) remainingTime/Environment.TOTAL_GAME_DURATION));
         int b = 0;

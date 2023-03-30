@@ -2,28 +2,10 @@ import java.awt.event.KeyEvent;
 public class Player {
     private double x = Environment.backgroundWidth/2.0;
     private final double y = Environment.playerBackHeight/2.0 + Environment.barHeight;
-    static int PERIOD_OF_PLAYER = 6000;
     private boolean isHit;
-    public void DisplayPlayer() {
+    public void displayPlayer() {
         StdDraw.picture(x, y , "images/player_back.png"
                 , Environment.playerBackWidth, Environment.playerBackHeight);
-
-        // IMPORTANT: NOT DELETED FOR THE PURPOSE OF SHOWING THE COLLISION DETECTION
-        //The following code is for the white box around the player
-        //It is used for ball collision detection to check the equality of the coordinates
-        //of the ball and the player. It holds. However, because player image is not a perfect rectangle,
-        //the final result is not as good as the one with the white box. Therefore, the white box is
-        //commented out. However, it is still kept here for the purpose of showing the collision detection.
-
-//        StdDraw.setPenColor(255, 255, 255);
-//        StdDraw.line(x-Environment.playerBackWidth/2.0, y + Environment.playerBackHeight/2.0,
-//                x+Environment.playerBackWidth/2.0, y + Environment.playerBackHeight/2.0);
-//        StdDraw.line(x-Environment.playerBackWidth/2.0, y+Environment.playerBackHeight/2.0,
-//                x-Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0);
-//        StdDraw.line(x+Environment.playerBackWidth/2.0, y+Environment.playerBackHeight/2.0,
-//                x+Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0);
-//        StdDraw.line(x-Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0,
-//                x+Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0);
     }
     public void moveLeft() {
         if (x - Environment.playerBackWidth / 2.0 > 0) {
@@ -50,6 +32,18 @@ public class Player {
             }
         }
     }
+    public double getX() {
+        return x;
+    }
+    public double getY() {
+        return y;
+    }
+    public boolean isHit() {
+        return isHit;
+    }
+    public void setIsHit(boolean isHit) {
+        this.isHit = isHit;
+    }
     /**
      * Move left test. This function is used to test the speed of the player.
      * The first time the player moves left, this code will print out the current time.
@@ -69,16 +63,24 @@ public class Player {
             System.out.println(System.currentTimeMillis() + " " + "left max");
         }
     }
-    public double getX() {
-        return x;
-    }
-    public double getY() {
-        return y;
-    }
-    public boolean isHit() {
-        return isHit;
-    }
-    public void setIsHit(boolean isHit) {
-        this.isHit = isHit;
+    /**
+     * Move right test. This function is used to test the speed of the player.
+     *  IMPORTANT: NOT DELETED FOR THE PURPOSE OF SHOWING THE COLLISION DETECTION
+     *  The following code is for the white box around the player
+     *  It is used for ball collision detection to check the equality of the coordinates
+     *  of the ball and the player. It holds. However, because player image is not a perfect rectangle,
+     *  the final result is not as good as the one with the white box. Therefore, the white box is
+     *  commented out. However, it is still kept here for the purpose of showing the collision detection.
+     */
+    private void displayPlayerTest() {
+        StdDraw.setPenColor(255, 255, 255);
+        StdDraw.line(x-Environment.playerBackWidth/2.0, y + Environment.playerBackHeight/2.0,
+                x+Environment.playerBackWidth/2.0, y + Environment.playerBackHeight/2.0);
+        StdDraw.line(x-Environment.playerBackWidth/2.0, y+Environment.playerBackHeight/2.0,
+                x-Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0);
+        StdDraw.line(x+Environment.playerBackWidth/2.0, y+Environment.playerBackHeight/2.0,
+                x+Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0);
+        StdDraw.line(x-Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0,
+                x+Environment.playerBackWidth/2.0, y-Environment.playerBackHeight/2.0);
     }
 }

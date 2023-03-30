@@ -2,15 +2,15 @@ public class Arrow {
     private boolean isFired ;
     private double x ;
     private double size;
-    static final int PERIOD_OF_ARROW = 1500;
+    private final int arrowWidth = 8;          // 8 is the width of the arrow
     public Arrow(boolean isFired, double x) {
         this.isFired = isFired;
         this.x = x;
     }
-    public void DisplayMovingArrow(){
+    public void displayMovingArrow(){
         if (isFired) {
             StdDraw.picture(x, Environment.barHeight + size / 2, "images/arrow.png"
-                    , Environment.arrowWidth, size);
+                    , arrowWidth, size);
             size += 10.6;                  //Found experimentally by using the function at the bottom of this class
             if (size > Environment.backgroundHeight + 10) {
                                             //The last size of the arrow will be 2 pixel more than the height of the screen
@@ -48,11 +48,11 @@ public class Arrow {
      *
      * @param speed the speed
      */
-    private void MovingArrowTest(double speed){ //Used to test the speed of the arrow
+    private void movingArrowTest(double speed){ //Used to test the speed of the arrow
         if (isFired){
             System.out.println(System.currentTimeMillis());
             StdDraw.picture(x, Environment.barHeight+size/2, "images/arrow.png"
-                    , Environment.arrowWidth, size);
+                    , arrowWidth, size);
             size += speed;
             if (size > Environment.backgroundHeight + speed - 1){
                 isFired = false;
