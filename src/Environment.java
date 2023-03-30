@@ -30,8 +30,8 @@ public class Environment {
 
     public void playGame() {                    //This method is the main method of the game
         boolean win = false;
-//        balls.add(new Ball(0.1*6/15,0,4,scaleX2/4, scaleY2/2,currentTimeMillis()));
-//        balls.add(new Ball(0.1*6/15,180,2,scaleX2/3, scaleY2/3,currentTimeMillis()));
+        balls.add(new Ball(0.1*6/15,0,4,scaleX2/4, scaleY2/2,currentTimeMillis()));
+        balls.add(new Ball(0.1*6/15,180,2,scaleX2/3, scaleY2/3,currentTimeMillis()));
         balls.add(new Ball(0.1*6/15,0,1,scaleX2/4, scaleY2/4,currentTimeMillis()));
         Player player = new Player();
         Arrow arrow = new Arrow(false, player.getX());
