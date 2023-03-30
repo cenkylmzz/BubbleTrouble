@@ -14,9 +14,6 @@ public class Bar {
                 ((remainingTime / (double) Environment.TOTAL_GAME_DURATION) * Environment.backgroundWidth),
                 Environment.barHeight/4.0);
     }
-    public long getStartTime() {
-        return startTime;
-    }
     public long getRemainingTime() {
         return remainingTime;
     }
