@@ -11,7 +11,6 @@ public class Environment {
     static final float scaleX2 = 640;         // 640 is the width of the background
     static final float scaleY2 = backgroundHeight + barHeight;    // 66 is the height of the bar , 480 is the height of the background
     static final long TOTAL_GAME_DURATION = 40000;
-    static ArrayList<Ball> balls = new ArrayList<>();
     Environment() {
         initialize();
         playGame();
@@ -30,6 +29,7 @@ public class Environment {
 
     public void playGame() {                    //This method is the main method of the game
         boolean win = false;
+        ArrayList<Ball> balls = new ArrayList<>();
         balls.add(new Ball(0.1*6/15,0,4,scaleX2/4, scaleY2/2,currentTimeMillis()));
         balls.add(new Ball(0.1*6/15,180,2,scaleX2/3, scaleY2/3,currentTimeMillis()));
         balls.add(new Ball(0.1*6/15,0,1,scaleX2/4, scaleY2/4,currentTimeMillis()));
