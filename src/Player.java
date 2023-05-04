@@ -1,22 +1,47 @@
 import java.awt.event.KeyEvent;
+
+/**
+ * The type Player. This class is used to create the player object. It also contains the methods that are used to move the player.
+ * It also contains the methods that are used to display the player.
+ *
+ */
 public class Player {
     private double x = Environment.backgroundWidth/2.0;
     private final double y = Environment.playerBackHeight/2.0 + Environment.barHeight;
     private boolean isHit;
+
+    /**
+     * Display player. This method is used to display the player.
+     */
     public void displayPlayer() {
         StdDraw.picture(x, y , "images/player_back.png"
                 , Environment.playerBackWidth, Environment.playerBackHeight);
     }
+
+    /**
+     * Move left. This method is used to move the player left.
+     */
     public void moveLeft() {
         if (x - Environment.playerBackWidth / 2.0 > 0) {
             x -= 11.1/3.0;              //Found experimentally by using the function at the bottom of this class
         }
     }
+
+    /**
+     * Move right. This method is used to move the player right.
+     */
     public void moveRight() {
         if (x + Environment.playerBackWidth/2.0 < Environment.backgroundWidth) {
             x += 11.1/3.0;            //Found experimentally by using the function at the bottom of this class
         }
     }
+
+    /**
+     * Player controls. This method is used to control the player.
+     * It is used to move the player left and right. It is also used to fire the arrow.
+     *
+     * @param arrow the arrow
+     */
     public void playerControls(Arrow arrow){
         if (StdDraw.isKeyPressed(KeyEvent.VK_LEFT)) {
             moveLeft();
@@ -32,15 +57,39 @@ public class Player {
             }
         }
     }
+
+    /**
+     * Gets x. This method is used to get the x coordinate of the player.
+     *
+     * @return the x
+     */
     public double getX() {
         return x;
     }
+
+    /**
+     * Gets y. This method is used to get the y coordinate of the player.
+     *
+     * @return the y
+     */
     public double getY() {
         return y;
     }
+
+    /**
+     * Is hit boolean. This method is used to check if the player is hit.
+     *
+     * @return the boolean
+     */
     public boolean isHit() {
         return isHit;
     }
+
+    /**
+     * Sets is hit. This method is used to set the isHit variable.
+     *
+     * @param isHit the is hit
+     */
     public void setIsHit(boolean isHit) {
         this.isHit = isHit;
     }
